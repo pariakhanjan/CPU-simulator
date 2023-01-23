@@ -223,6 +223,7 @@ int main(int argc, char *argv[])
         inputs = fopen(argv[1], "r");
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     {
+        jumpCount++;
         int rd, rs, rt, Imm;
         char instructions[12] = {'\0'};
         for (int i = 0; i < sizeof(commands); i++)
@@ -316,7 +317,7 @@ int main(int argc, char *argv[])
             jumpCount++;
             if (jumpCount > 10)
             {
-                printf("Error! Infinit loop has happened! We'll skip your jumps from now on!");
+                printf("Error! Infinit loop has happened! We'll skip your jumps from now on!\n");
                 fscanf(inputs, "%[^\n]\n", commands);
                 jumpCount = 0;
             }
@@ -379,7 +380,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            printf("Wrong instruction! Please try again. Maybe you've made a typo\n");
+            printf("ERROR! Wrong instruction! Please try again. Maybe you've made a typo\n");
         }
     }
     fclose(inputs);
