@@ -213,7 +213,7 @@ void INPUT()
 }
 void OUTPUT()
 {
-    printf("%d", S[0]);
+    printf("%d\n", S[0]);
 }
 int Error(int rd, int rs, int rt, char instruction[12])
 {
@@ -251,9 +251,9 @@ int Error(int rd, int rs, int rt, char instruction[12])
 // }
 int main(int argc, char *argv[])
 {
-	int j;
+    int j;
     int jumpCount = 0;
-    int lineCounter=0;
+    int lineCounter = 0;
     char commands[100];
     FILE *inputs;
     if (argc < 2)
@@ -262,9 +262,9 @@ int main(int argc, char *argv[])
         inputs = fopen(argv[1], "r");
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     {
-    	lineCounter ++;
-	}
-	rewind(inputs);
+        lineCounter++;
+    }
+    rewind(inputs);
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     {
         jumpCount++;
@@ -274,10 +274,12 @@ int main(int argc, char *argv[])
         {
             commands[i] = toupper(commands[i]);
         }
-        for (j = 0; commands[j] != ' '; j++)
+        for (j = 0; commands[j] != ' ' ; j++)
         {
             instructions[j] = commands[j];
-        }
+//            if(commands[j+1]=='\n')
+//            	commands[j+1]==' ';
+        }                                                                  
         if (strcmp(instructions, "ADD") == 0)
         {
             sscanf(commands, "ADD S%d, S%d, S%d", &rd, &rs, &rt);
@@ -386,25 +388,26 @@ int main(int argc, char *argv[])
             {
                 int countLines = 1, countChars = 0;
                 sscanf(commands, "JMP %d", &Imm);
-                if(Imm <= 0)
+                if (Imm <= 0)
                 {
-                	printf("ERROR! You can't jump to zero or a negative limne!");
-				}
-				else if(Imm > lineCounter)
-				{
-					printf("ERROR! You can't jump to a line you don't have!add");
-				}
-				else{
-                rewind(inputs);
-                while (countLines != Imm)
-                {
-                    countChars++;
-                    if (fgetc(inputs) == '\n')
-                        countLines++;
+                    printf("ERROR! You can't jump to zero or a negative line!\n");
                 }
-                fseek(inputs, countChars, SEEK_SET);
-                fscanf(inputs, "%[^\n]\n", commands);
-            }
+                else if (Imm > lineCounter)
+                {
+                    printf("ERROR! You only have %d lines. \n", lineCounter);
+                }
+                else
+                {
+                    rewind(inputs);
+                    while (countLines != Imm)
+                    {
+                        countChars++;
+                        if (fgetc(inputs) == '\n')
+                            countLines++;
+                    }
+                    fseek(inputs, countChars, SEEK_SET);
+                    fscanf(inputs, "%[^\n]\n", commands);
+                }
             }
         }
         else if (strcmp(instructions, "SKIE") == 0)
