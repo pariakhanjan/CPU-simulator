@@ -9,7 +9,7 @@
 
 /***********
  * Include Files
- * @brif I've added "ctype.h" library for the function "toupper". The "Windows.h" library is added for changing system color in errors.
+ * @brief I've added "ctype.h" library for the function "toupper". The "Windows.h" library is added for changing system color in errors.
  ************/
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ int stack[100];
 
 /**
  *parityFlag Funtion
- *@brife it checks whether the binary form of the result has an even number of '1' bits or not.
+ *@brief it checks whether the binary form of the result has an even number of '1' bits or not.
  *@param int result
  *@return void
  **/
@@ -44,7 +44,7 @@ void parityFlag(int result)
 
 /**
  *zeroFlag Funtion
- *@brife It turn sabbat[1] to 1 if the result is equal to zero.
+ *@brief It turn sabbat[1] to 1 if the result is equal to zero.
  *@param int result
  *@return void
  **/
@@ -58,7 +58,7 @@ void zeroFlag(int result)
 
 /**
  *signFlag Funtion
- *@brife It'll turn sabbat[2] to 1 if our result is negative.
+ *@brief It'll turn sabbat[2] to 1 if our result is negative.
  *@param int result
  *@return void
  **/
@@ -72,7 +72,7 @@ void signFlag(int result)
 
 /**
  *overFlowFlagAdd Funtion
- *@brife if the result of an addition has overflowed, it turns sabbat[5] to 1.
+ *@brief if the result of an addition has overflowed, it turns sabbat[5] to 1.
  *@param int a, int b, int a+b
  *@return void
  **/
@@ -86,7 +86,7 @@ void overflowFlagAdd(int a, int b, int result)
 
 /**
  *overFlowFlagSub Funtion
- *@brife if the result of an subtraction has overflowed, it turns sabbat[5] to 1.
+ *@brief if the result of an subtraction has overflowed, it turns sabbat[5] to 1.
  *@param int a, int b, int a-b
  *@return void
  **/
@@ -100,7 +100,7 @@ void overFlowFlagSub(int a, int b, int result)
 
 /**
  *overFlowFlagAdd Funtion
- *@brife if the result of an multiplication has overflowed, it turns sabbat[5] to 1.
+ *@brief if the result of an multiplication has overflowed, it turns sabbat[5] to 1.
  *@param int a, int b, int a*b
  *@return void
  **/
@@ -114,7 +114,7 @@ void overFlowProduct(int a, int b, int result)
 
 /**
  *PUSH Funtion
- *@brife adds S[rs] to stack.
+ *@brief adds S[rs] to stack.
  *@param int index (rs)
  *@return void
  **/
@@ -129,7 +129,7 @@ void PUSH(int rs)
 
 /**
  *POP Funtion
- *@brife removes S[rs] from the stack and returns it to S[].
+ *@brief removes S[rs] from the stack and returns it to S[].
  *@param int index (rs)
  *@return void
  **/
@@ -144,7 +144,7 @@ void POP(int rs)
 
 /**
  *ADD Funtion
- *@brife Adds the values of two sabbats and passes the result to the third.
+ *@brief Adds the values of two sabbats and passes the result to the third.
  *@param int index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we'll pass the result to (rt).
  *@return void
  **/
@@ -159,7 +159,7 @@ void ADD(int rd, int rs, int rt)
 
 /**
  *SUB Funtion
- *@brife Subtracts the value of the first sabbat from the second sabbat and passes the result to the third.
+ *@brief Subtracts the value of the first sabbat from the second sabbat and passes the result to the third.
  *@param int index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we'll pass the result to (rt).
  *@return void
  **/
@@ -174,7 +174,7 @@ void SUB(int rd, int rs, int rt)
 
 /**
  *DIV Funtion
- *@brife Divides the first sabbat by the second one. Passes the quotient to the first sabbat and the remainder to the second one.
+ *@brief Divides the first sabbat by the second one. Passes the quotient to the first sabbat and the remainder to the second one.
  *@param int index of the first sabbat (rt), int index of the second sabbat (rs).
  *@return void
  **/
@@ -191,7 +191,7 @@ void DIV(int rt, int rs)
 
 /**
  *AND Funtion
- *@brife Performs a bitwise and on two sabbats and passes the result to the third.
+ *@brief Performs a bitwise and on two sabbats and passes the result to the third.
  *@param int index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we'll pass the result to (rt).
  *@return void
  **/
@@ -205,7 +205,7 @@ void AND(int rd, int rs, int rt)
 
 /**
  *XOR Funtion
- *@brife Performs a bitwise xor on two sabbats and passes the result to the third.
+ *@brief Performs a bitwise xor on two sabbats and passes the result to the third.
  *@param int index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we'll pass the result to (rt).
  *@return void
  **/
@@ -219,7 +219,7 @@ void XOR(int rd, int rs, int rt)
 
 /**
  *OR Funtion
- *@brife Performs a bitwise or on two sabbats and passes the result to the third.
+ *@brief Performs a bitwise or on two sabbats and passes the result to the third.
  *@param int index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we'll pass the result to (rt).
  *@return void
  **/
@@ -233,7 +233,7 @@ void OR(int rd, int rs, int rt)
 
 /**
  *MULL Funtion
- *@brife it multiplies two sabbats and passes the 4 most significant bits to the first sabbat and the 4 least significant bits to the second one.
+ *@brief it multiplies two sabbats and passes the 4 most significant bits to the first sabbat and the 4 least significant bits to the second one.
  *@param int index of the first sabbat (rt), int index of the second sabbat (rs).
  *@return void
  **/
@@ -250,7 +250,7 @@ void MULL(int rt, int rs)
 
 /**
  *ADDI Funtion
- *@brife Adds a sabbat and a constant number and passes the result to the second sabbat.
+ *@brief Adds a sabbat and a constant number and passes the result to the second sabbat.
  *@param int index of the first sabbat (rt), integer constant number, and int index of the sabbat we'll pass the result to (rs).
  *@return void
  **/
@@ -265,7 +265,7 @@ void ADDI(int rt, int rs, int Imm)
 
 /**
  *SUBI Funtion
- *@brife Subtarcts a constant number from a sabbat and passes the result to the second sabbat.
+ *@brief Subtarcts a constant number from a sabbat and passes the result to the second sabbat.
  *@param int index of the first sabbat (rt), integer constant number, and int index of the sabbat we'll pass the result to (rs).
  *@return void
  **/
@@ -280,7 +280,7 @@ void SUBI(int rt, int rs, int Imm)
 
 /**
  *ANDI Funtion
- *@brife Performs a bitwise and on a sabbat and a constant integer and passes the result to the second sabbat.
+ *@brief Performs a bitwise and on a sabbat and a constant integer and passes the result to the second sabbat.
  *@param int index of the first sabbat (rt), integer constant number, and int index of the sabbat we'll pass the result to (rs).
  *@return void
  **/
@@ -294,7 +294,7 @@ void ANDI(int rt, int rs, int Imm)
 
 /**
  *XORI Funtion
- *@brife Performs a bitwise xor on a sabbat and a constant integer and passes the result to the second sabbat.
+ *@brief Performs a bitwise xor on a sabbat and a constant integer and passes the result to the second sabbat.
  *@param int index of the first sabbat (rt), integer constant number, and int index of the sabbat we'll pass the result to (rs).
  *@return void
  **/
@@ -308,7 +308,7 @@ void XORI(int rt, int rs, int Imm)
 
 /**
  *ORI Funtion
- *@brife Performs a bitwise or on a sabbat and a constant integer and passes the result to the second sabbat.
+ *@brief Performs a bitwise or on a sabbat and a constant integer and passes the result to the second sabbat.
  *@param int index of the first sabbat (rt), integer constant number, and int index of the sabbat we'll pass the result to (rs).
  *@return void
  **/
@@ -322,7 +322,7 @@ void ORI(int rt, int rs, int Imm)
 
 /**
  *MOV Funtion
- *@brife Passes a constant integer to a sabbat.
+ *@brief Passes a constant integer to a sabbat.
  *@param integer constant number, and int index of the sabbat we'll pass the value to (rt).
  *@return void
  **/
@@ -333,7 +333,7 @@ void MOV(int rt, int Imm)
 
 /**
  *SWP Funtion
- *@brife It swaps the values of two sabbats.
+ *@brief It swaps the values of two sabbats.
  *@param int index of the first sabbat (rt) and int index of the second sabbat.
  *@return void
  **/
@@ -346,7 +346,7 @@ void SWP(int rt, int rs)
 
 /**
  *DUMP_REGS Funtion
- *@brife prints the values of all sabbats and all bits of sabbat vaziat.
+ *@brief prints the values of all sabbats and all bits of sabbat vaziat.
  *@param void
  *@return void
  **/
@@ -367,7 +367,7 @@ void DUMP_REGS()
 
 /**
  *DUMP_REGS_F Funtion
- *@brife passes the values of all sabbats and all bits of sabbat vaziat to a file named "regs.txt".
+ *@brief passes the values of all sabbats and all bits of sabbat vaziat to a file named "regs.txt".
  *@param void
  *@return void
  **/
@@ -389,7 +389,7 @@ void DUMP_REGS_F()
 
 /**
  *ERROR Funtion
- *@brife checks whether the argument the user has entered is valid.
+ *@brief checks whether the argument the user has entered is valid.
  *@param three integer indexes of sabbats, a string of the unstruction we want to perform.
  *@return returns 1 if an error has occured and returns 0 if the argument are valid.
  **/
@@ -428,122 +428,122 @@ int main(int argc, char *argv[])
     char commands[100];
     FILE *inputs;
     if (argc < 2)
-    /* if the user has input an invalid file name, it automatically opens "in.txt" */ 
-	    inputs = fopen("in.txt", "r");
+        /* if the user has input an invalid file name, it automatically opens "in.txt" */
+        inputs = fopen("in.txt", "r");
     else
         inputs = fopen(argv[1], "r");
-    /* it opens user's input */ 
+    /* it opens user's input */
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     /* scans each line from the file and passes it to the array "commands" */
     {
         lineCounter++;
         /*it counts all the lines to the file you've opened*/
     }
-    rewind(inputs); 
+    rewind(inputs);
     /* returns the pointer to the beggining of the file */
-    
+
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     {
         int rd, rs, rt, Imm;
         char instructions[12] = {'\0'};
         for (int i = 0; i < sizeof(commands); i++)
         {
-        	/* makes sure all the letters in our input are uppercase. */
+            /* makes sure all the letters in our input are uppercase. */
             commands[i] = toupper(commands[i]);
         }
         for (index = 0; commands[index] != ' '; index++)
         {
-        	/*passes the first word of the line (which is suppossed to b3e the instruction) to the array "instructions" */
+            /*passes the first word of the line (which is suppossed to b3e the instruction) to the array "instructions" */
             instructions[index] = commands[index];
         }
-        
+
         if (strcmp(instructions, "ADD") == 0)
         {
             sscanf(commands, "ADD S%d, S%d, S%d", &rd, &rs, &rt);
             if (!Error(rd, rs, rt, instructions))
                 ADD(rd, rs, rt);
         }
-        
+
         else if (strcmp(instructions, "SUB") == 0)
         {
             sscanf(commands, "SUB S%d, S%d, S%d", &rd, &rs, &rt);
             if (!Error(rd, rs, rt, instructions))
                 SUB(rd, rs, rt);
         }
-        
+
         else if (strcmp(instructions, "AND") == 0)
         {
             sscanf(commands, "AND S%d, S%d, S%d", &rd, &rs, &rt);
             if (!Error(rd, rs, rt, instructions))
                 AND(rd, rs, rt);
         }
-        
+
         else if (strcmp(instructions, "XOR") == 0)
         {
             sscanf(commands, "XOR S%d, S%d, S%d", &rd, &rs, &rt);
             if (!Error(rd, rs, rt, instructions))
                 XOR(rd, rs, rt);
         }
-        
+
         else if (strcmp(instructions, "OR") == 0)
         {
             sscanf(commands, "OR S%d, S%d, S%d", &rd, &rs, &rt);
             if (!Error(rd, rs, rt, instructions))
                 OR(rd, rs, rt);
         }
-        
+
         else if (strcmp(instructions, "DIV") == 0)
         {
             sscanf(commands, "DIV S%d, S%d", &rt, &rs);
             if (!Error(rd, rs, 0, instructions))
                 DIV(rt, rs);
         }
-        
+
         else if (strcmp(instructions, "MULL") == 0)
         {
             sscanf(commands, "MULL S%d, S%d", &rt, &rs);
             if (!Error(rd, rs, 0, instructions))
                 MULL(rt, rs);
         }
-        
+
         else if (strcmp(instructions, "ADDI") == 0)
         {
             sscanf(commands, "ADDI S%d, S%d, %d", &rd, &rs, &Imm);
             if (!Error(rd, rs, 0, instructions))
                 ADDI(rd, rs, Imm);
         }
-        
+
         else if (strcmp(instructions, "SUBI") == 0)
         {
             sscanf(commands, "SUBI S%d, S%d, %d", &rd, &rs, &Imm);
             if (!Error(rd, rs, 0, instructions))
                 SUBI(rd, rs, Imm);
         }
-        
+
         else if (strcmp(instructions, "ANDI") == 0)
         {
             sscanf(commands, "ANDI S%d, S%d, %d", &rd, &rs, &Imm);
             if (!Error(rd, rs, 0, instructions))
                 ANDI(rd, rs, Imm);
         }
-        
+
         else if (strcmp(instructions, "XORI") == 0)
         {
             sscanf(commands, "XORI S%d, S%d, %d", &rd, &rs, &Imm);
             if (!Error(rd, rs, 0, instructions))
                 XORI(rd, rs, Imm);
         }
-        
+
         else if (strcmp(instructions, "ORI") == 0)
         {
             sscanf(commands, "ORI S%d, S%d, %d", &rd, &rs, &Imm);
             if (!Error(rd, rs, Imm, instructions))
                 ORI(rd, rs, Imm);
         }
-        
+
         else if (strcmp(instructions, "MOV") == 0)
         {
-        	/* checks if the second input for MOV function is an index or a constant integer. */
+            /* checks if the second input for MOV function is an index or a constant integer. */
             if (commands[8] == 'S' || commands[9] == 'S')
             {
                 sscanf(commands, "MOV S%d, S%d", &rt, &rs);
@@ -557,20 +557,20 @@ int main(int argc, char *argv[])
                     MOV(rt, Imm);
             }
         }
-        
+
         else if (strcmp(instructions, "SWP") == 0)
         {
             sscanf(commands, "SWP S%d, S%d", &rt, &rs);
             if (!Error(rt, rs, 0, instructions))
                 SWP(rt, rs);
         }
-        
+
         else if (strcmp(instructions, "JMP") == 0)
         {
             jumpCount++;
             if (jumpCount > 10)
             {
-            	/* if we have backward jumps in our input, an infinit loop might happen. We'll count our jumps and if the number gets higher than 10, we'll ignore jump instructions. */
+                /* if we have backward jumps in our input, an infinit loop might happen. We'll count our jumps and if the number gets higher than 10, we'll ignore jump instructions. */
                 system("color 04");
                 printf("ERROR! Infinit loop has happened! We'll skip your jumps from now on!\n");
                 fscanf(inputs, "%[^\n]\n", commands);
@@ -609,7 +609,7 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        
+
         else if (strcmp(instructions, "SKIE") == 0)
         {
             sscanf(commands, "SKIE S%d, S%d", &rt, &rs);
@@ -622,56 +622,58 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        
+
         else if (strcmp(instructions, "PUSH") == 0)
         {
             sscanf(commands, "PUSH S%d", &rs);
             if (!Error(rs, 0, 0, instructions))
                 PUSH(rs);
         }
-        
+
         else if (strcmp(instructions, "POP") == 0)
         {
             sscanf(commands, "POP S%d", &rs);
             if (!Error(rs, 0, 0, instructions))
                 POP(rs);
         }
-        
+
         else if (strcmp(instructions, "DUMP_REGS") == 0)
         {
             DUMP_REGS();
         }
-        
+
         else if (strcmp(instructions, "DUMP_REGS_F") == 0)
         {
             DUMP_REGS_F();
         }
-        
+
         else if (strcmp(instructions, "INPUT") == 0)
         {
-        	/* takes a constant integer from user an passes it to S[0] */
+            /* takes a constant integer from user an passes it to S[0] */
             scanf("%d", &Imm);
             S[0] = Imm;
         }
-        
+
         else if (strcmp(instructions, "OUTPUT") == 0)
         {
-        	/* prints the first sabbat */
+            /* prints the first sabbat */
             printf("%d\n", S[0]);
         }
-        
+
         else if (strcmp(instructions, "EXIT") == 0)
         {
-        	/* stops the cpu simulator's work. */
+            /* stops the cpu simulator's work. */
             break;
         }
-        
+
         else
         {
             system("color 04");
             printf("ERROR! Wrong instruction! Please try again. Maybe you've made a typo.\n");
         }
     }
+
     fclose(inputs);
+
     return 0;
 }
