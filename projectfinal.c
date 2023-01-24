@@ -453,9 +453,9 @@ int main(int argc, char *argv[])
             /* makes sure all the letters in our input are uppercase. */
             commands[i] = toupper(commands[i]);
         }
-        for (index = 0; commands[index] != ' '; index++)
+        for (index = 0; commands[index] != ' ' && commands[index] != '\n' && commands[index] != '/'; index++)
         {
-            /*passes the first word of the line (which is suppossed to b3e the instruction) to the array "instructions" */
+            /*passes the first word of the line (which is suppossed to be the instruction) to the array "instructions" */
             instructions[index] = commands[index];
         }
 

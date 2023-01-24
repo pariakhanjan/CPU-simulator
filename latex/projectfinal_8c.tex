@@ -1,0 +1,540 @@
+\hypertarget{projectfinal_8c}{}\doxysection{projectfinal.\+c File Reference}
+\label{projectfinal_8c}\index{projectfinal.c@{projectfinal.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$Windows.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{projectfinal_8c_a0e90003af21a0a54dfc43f150e350c38}{parity\+Flag}} (int result)
+\begin{DoxyCompactList}\small\item\em it checks whether the binary form of the result has an even number of \textquotesingle{}1\textquotesingle{} bits or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a767daef722be9eca9e10c6774015dd44}{zero\+Flag}} (int result)
+\begin{DoxyCompactList}\small\item\em It turns sabbat\mbox{[}1\mbox{]} to 1 if the result is equal to zero. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_ac78723113306ddaf6783ecb64a4b1338}{sign\+Flag}} (int result)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}ll turn sabbat\mbox{[}2\mbox{]} to 1 if our result is negative. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a8fa8a35f950357beffd1b71902313235}{overflow\+Flag\+Add}} (int a, int b, int result)
+\begin{DoxyCompactList}\small\item\em if the result of an addition has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_ac0285fa796472952f9c2165342c1d184}{over\+Flow\+Flag\+Sub}} (int a, int b, int result)
+\begin{DoxyCompactList}\small\item\em if the result of an subtraction has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a3d5b3ef53df62438b9d9b7cc28e7f3e5}{over\+Flow\+Product}} (int a, int b, int result)
+\begin{DoxyCompactList}\small\item\em if the result of an multiplication has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_ad915a596e86e11f67fb454bd4c12a30a}{PUSH}} (int rs)
+\begin{DoxyCompactList}\small\item\em adds S\mbox{[}rs\mbox{]} to stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a4b117a8d6e91eb513103dcb62ee10d00}{POP}} (int rs)
+\begin{DoxyCompactList}\small\item\em removes S\mbox{[}rs\mbox{]} from the stack and returns it to S\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a208b473791cc65cdef28b1a06632767c}{ADD}} (int rd, int rs, int rt)
+\begin{DoxyCompactList}\small\item\em Adds the values of two sabbats and passes the result to the third. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a7d552c470d929956ad217d8890a22e19}{SUB}} (int rd, int rs, int rt)
+\begin{DoxyCompactList}\small\item\em Subtracts the value of the first sabbat from the second sabbat and passes the result to the third. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a55d87b24a8c43f74c7a16a88de23d8c9}{DIV}} (int rt, int rs)
+\begin{DoxyCompactList}\small\item\em Divides the first sabbat by the second one. Passes the quotient to the first sabbat and the remainder to the second one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a53f6d122aba9172e5c5082831bf9b38d}{AND}} (int rd, int rs, int rt)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise and on two sabbats and passes the result to the third. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a4c2aba9cfc40e6c523935c9b706fc17b}{XOR}} (int rd, int rs, int rt)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise xor on two sabbats and passes the result to the third. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a63c0b5dc1a36b43cfcbaa2fca3370599}{OR}} (int rd, int rs, int rt)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise or on two sabbats and passes the result to the third. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_ab9c9faca58fe2946cec7a2d5cce2f954}{MULL}} (int rt, int rs)
+\begin{DoxyCompactList}\small\item\em it multiplies two sabbats and passes the 4 most significant bits to the first sabbat and the 4 least significant bits to the second one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_aea7e4871dbf3bbada7e723caf01d0439}{ADDI}} (int rt, int rs, int Imm)
+\begin{DoxyCompactList}\small\item\em Adds a sabbat and a constant number and passes the result to the second sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a73241cd5d065fe5e3c8fcd17f29ba1ed}{SUBI}} (int rt, int rs, int Imm)
+\begin{DoxyCompactList}\small\item\em Subtarcts a constant number from a sabbat and passes the result to the second sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_af45f9fd88ba958dc935585d12ff327dc}{ANDI}} (int rt, int rs, int Imm)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise and on a sabbat and a constant integer and passes the result to the second sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a45a828d6c33c2f9cc2983efb4a3067ac}{XORI}} (int rt, int rs, int Imm)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise xor on a sabbat and a constant integer and passes the result to the second sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_acc90d732c1fb58250a6bc176275b97ab}{ORI}} (int rt, int rs, int Imm)
+\begin{DoxyCompactList}\small\item\em Performs a bitwise or on a sabbat and a constant integer and passes the result to the second sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a406fab2688bf343429713a2eb98acc0d}{MOV}} (int rt, int Imm)
+\begin{DoxyCompactList}\small\item\em Passes a constant integer to a sabbat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_ae1d663091740d39219a78794f4c6120e}{SWP}} (int rt, int rs)
+\begin{DoxyCompactList}\small\item\em It swaps the values of two sabbats. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a7246c8d53de6fe3db29dacbae22570db}{DUMP\+\_\+\+REGS}} ()
+\begin{DoxyCompactList}\small\item\em prints the values of all sabbats and all bits of sabbat vaziat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projectfinal_8c_a1e31b0b875ff67d7c38723f17d2f664a}{DUMP\+\_\+\+REGS\+\_\+F}} ()
+\begin{DoxyCompactList}\small\item\em passes the values of all sabbats and all bits of sabbat vaziat to a file named \char`\"{}regs.\+txt\char`\"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{projectfinal_8c_a3c599eb246ba14427fe807cc29850ae3}{Error}} (int rd, int rs, int rt, char instruction\mbox{[}12\mbox{]})
+\begin{DoxyCompactList}\small\item\em checks whether the argument the user has entered is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{projectfinal_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{projectfinal_8c_a6645214d8cdb9a49f01f13c7361a4646}\label{projectfinal_8c_a6645214d8cdb9a49f01f13c7361a4646}} 
+int {\bfseries S} \mbox{[}32\mbox{]}
+\item 
+\mbox{\Hypertarget{projectfinal_8c_a89909644ea6fc9422af8e025d0165f79}\label{projectfinal_8c_a89909644ea6fc9422af8e025d0165f79}} 
+int {\bfseries sabbat} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{projectfinal_8c_ad557a1a3563514f34a679e3a76452af8}\label{projectfinal_8c_ad557a1a3563514f34a679e3a76452af8}} 
+int {\bfseries stack} \mbox{[}100\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{projectfinal_8c_a208b473791cc65cdef28b1a06632767c}\label{projectfinal_8c_a208b473791cc65cdef28b1a06632767c}} 
+\index{projectfinal.c@{projectfinal.c}!ADD@{ADD}}
+\index{ADD@{ADD}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{ADD()}{ADD()}}
+{\footnotesize\ttfamily void ADD (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt }\end{DoxyParamCaption})}
+
+
+
+Adds the values of two sabbats and passes the result to the third. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we\textquotesingle{}ll pass the result to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_aea7e4871dbf3bbada7e723caf01d0439}\label{projectfinal_8c_aea7e4871dbf3bbada7e723caf01d0439}} 
+\index{projectfinal.c@{projectfinal.c}!ADDI@{ADDI}}
+\index{ADDI@{ADDI}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{ADDI()}{ADDI()}}
+{\footnotesize\ttfamily void ADDI (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Adds a sabbat and a constant number and passes the result to the second sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), integer constant number, and int index of the sabbat we\textquotesingle{}ll pass the result to (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a53f6d122aba9172e5c5082831bf9b38d}\label{projectfinal_8c_a53f6d122aba9172e5c5082831bf9b38d}} 
+\index{projectfinal.c@{projectfinal.c}!AND@{AND}}
+\index{AND@{AND}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{AND()}{AND()}}
+{\footnotesize\ttfamily void AND (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise and on two sabbats and passes the result to the third. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we\textquotesingle{}ll pass the result to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_af45f9fd88ba958dc935585d12ff327dc}\label{projectfinal_8c_af45f9fd88ba958dc935585d12ff327dc}} 
+\index{projectfinal.c@{projectfinal.c}!ANDI@{ANDI}}
+\index{ANDI@{ANDI}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{ANDI()}{ANDI()}}
+{\footnotesize\ttfamily void ANDI (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise and on a sabbat and a constant integer and passes the result to the second sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), integer constant number, and int index of the sabbat we\textquotesingle{}ll pass the result to (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a55d87b24a8c43f74c7a16a88de23d8c9}\label{projectfinal_8c_a55d87b24a8c43f74c7a16a88de23d8c9}} 
+\index{projectfinal.c@{projectfinal.c}!DIV@{DIV}}
+\index{DIV@{DIV}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{DIV()}{DIV()}}
+{\footnotesize\ttfamily void DIV (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+Divides the first sabbat by the second one. Passes the quotient to the first sabbat and the remainder to the second one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), int index of the second sabbat (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a7246c8d53de6fe3db29dacbae22570db}\label{projectfinal_8c_a7246c8d53de6fe3db29dacbae22570db}} 
+\index{projectfinal.c@{projectfinal.c}!DUMP\_REGS@{DUMP\_REGS}}
+\index{DUMP\_REGS@{DUMP\_REGS}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{DUMP\_REGS()}{DUMP\_REGS()}}
+{\footnotesize\ttfamily void DUMP\+\_\+\+REGS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+prints the values of all sabbats and all bits of sabbat vaziat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a1e31b0b875ff67d7c38723f17d2f664a}\label{projectfinal_8c_a1e31b0b875ff67d7c38723f17d2f664a}} 
+\index{projectfinal.c@{projectfinal.c}!DUMP\_REGS\_F@{DUMP\_REGS\_F}}
+\index{DUMP\_REGS\_F@{DUMP\_REGS\_F}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{DUMP\_REGS\_F()}{DUMP\_REGS\_F()}}
+{\footnotesize\ttfamily void DUMP\+\_\+\+REGS\+\_\+F (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+passes the values of all sabbats and all bits of sabbat vaziat to a file named \char`\"{}regs.\+txt\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a3c599eb246ba14427fe807cc29850ae3}\label{projectfinal_8c_a3c599eb246ba14427fe807cc29850ae3}} 
+\index{projectfinal.c@{projectfinal.c}!Error@{Error}}
+\index{Error@{Error}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily int Error (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt,  }\item[{char}]{instruction\mbox{[}12\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+checks whether the argument the user has entered is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em three} & integer indexes of sabbats, a string of the unstruction we want to perform. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 1 if an error has occured and returns 0 if the argument are valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{projectfinal_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{projectfinal.c@{projectfinal.c}!main@{main}}
+\index{main@{main}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & argc, char $\ast$argv\mbox{[}\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a406fab2688bf343429713a2eb98acc0d}\label{projectfinal_8c_a406fab2688bf343429713a2eb98acc0d}} 
+\index{projectfinal.c@{projectfinal.c}!MOV@{MOV}}
+\index{MOV@{MOV}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{MOV()}{MOV()}}
+{\footnotesize\ttfamily void MOV (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Passes a constant integer to a sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em integer} & constant number, and int index of the sabbat we\textquotesingle{}ll pass the value to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_ab9c9faca58fe2946cec7a2d5cce2f954}\label{projectfinal_8c_ab9c9faca58fe2946cec7a2d5cce2f954}} 
+\index{projectfinal.c@{projectfinal.c}!MULL@{MULL}}
+\index{MULL@{MULL}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{MULL()}{MULL()}}
+{\footnotesize\ttfamily void MULL (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+it multiplies two sabbats and passes the 4 most significant bits to the first sabbat and the 4 least significant bits to the second one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), int index of the second sabbat (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a63c0b5dc1a36b43cfcbaa2fca3370599}\label{projectfinal_8c_a63c0b5dc1a36b43cfcbaa2fca3370599}} 
+\index{projectfinal.c@{projectfinal.c}!OR@{OR}}
+\index{OR@{OR}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{OR()}{OR()}}
+{\footnotesize\ttfamily void OR (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise or on two sabbats and passes the result to the third. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we\textquotesingle{}ll pass the result to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_acc90d732c1fb58250a6bc176275b97ab}\label{projectfinal_8c_acc90d732c1fb58250a6bc176275b97ab}} 
+\index{projectfinal.c@{projectfinal.c}!ORI@{ORI}}
+\index{ORI@{ORI}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{ORI()}{ORI()}}
+{\footnotesize\ttfamily void ORI (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise or on a sabbat and a constant integer and passes the result to the second sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), integer constant number, and int index of the sabbat we\textquotesingle{}ll pass the result to (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a8fa8a35f950357beffd1b71902313235}\label{projectfinal_8c_a8fa8a35f950357beffd1b71902313235}} 
+\index{projectfinal.c@{projectfinal.c}!overflowFlagAdd@{overflowFlagAdd}}
+\index{overflowFlagAdd@{overflowFlagAdd}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{overflowFlagAdd()}{overflowFlagAdd()}}
+{\footnotesize\ttfamily void overflow\+Flag\+Add (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+if the result of an addition has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & a, int b, int a+b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_ac0285fa796472952f9c2165342c1d184}\label{projectfinal_8c_ac0285fa796472952f9c2165342c1d184}} 
+\index{projectfinal.c@{projectfinal.c}!overFlowFlagSub@{overFlowFlagSub}}
+\index{overFlowFlagSub@{overFlowFlagSub}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{overFlowFlagSub()}{overFlowFlagSub()}}
+{\footnotesize\ttfamily ovoid over\+Flow\+Flag\+Sub (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+if the result of an subtraction has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & a, int b, int a-\/b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a3d5b3ef53df62438b9d9b7cc28e7f3e5}\label{projectfinal_8c_a3d5b3ef53df62438b9d9b7cc28e7f3e5}} 
+\index{projectfinal.c@{projectfinal.c}!overFlowProduct@{overFlowProduct}}
+\index{overFlowProduct@{overFlowProduct}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{overFlowProduct()}{overFlowProduct()}}
+{\footnotesize\ttfamily void over\+Flow\+Product (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+if the result of an multiplication has overflowed, it turns sabbat\mbox{[}5\mbox{]} to 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & a, int b, int a$\ast$b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a0e90003af21a0a54dfc43f150e350c38}\label{projectfinal_8c_a0e90003af21a0a54dfc43f150e350c38}} 
+\index{projectfinal.c@{projectfinal.c}!parityFlag@{parityFlag}}
+\index{parityFlag@{parityFlag}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{parityFlag()}{parityFlag()}}
+{\footnotesize\ttfamily void parity\+Flag (\begin{DoxyParamCaption}\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+it checks whether the binary form of the result has an even number of \textquotesingle{}1\textquotesingle{} bits or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a4b117a8d6e91eb513103dcb62ee10d00}\label{projectfinal_8c_a4b117a8d6e91eb513103dcb62ee10d00}} 
+\index{projectfinal.c@{projectfinal.c}!POP@{POP}}
+\index{POP@{POP}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{POP()}{POP()}}
+{\footnotesize\ttfamily void POP (\begin{DoxyParamCaption}\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+removes S\mbox{[}rs\mbox{]} from the stack and returns it to S\mbox{[}\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index (rs) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_ad915a596e86e11f67fb454bd4c12a30a}\label{projectfinal_8c_ad915a596e86e11f67fb454bd4c12a30a}} 
+\index{projectfinal.c@{projectfinal.c}!PUSH@{PUSH}}
+\index{PUSH@{PUSH}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{PUSH()}{PUSH()}}
+{\footnotesize\ttfamily void PUSH (\begin{DoxyParamCaption}\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+adds S\mbox{[}rs\mbox{]} to stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index (rs) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_ac78723113306ddaf6783ecb64a4b1338}\label{projectfinal_8c_ac78723113306ddaf6783ecb64a4b1338}} 
+\index{projectfinal.c@{projectfinal.c}!signFlag@{signFlag}}
+\index{signFlag@{signFlag}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{signFlag()}{signFlag()}}
+{\footnotesize\ttfamily void sign\+Flag (\begin{DoxyParamCaption}\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}ll turn sabbat\mbox{[}2\mbox{]} to 1 if our result is negative. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a7d552c470d929956ad217d8890a22e19}\label{projectfinal_8c_a7d552c470d929956ad217d8890a22e19}} 
+\index{projectfinal.c@{projectfinal.c}!SUB@{SUB}}
+\index{SUB@{SUB}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{SUB()}{SUB()}}
+{\footnotesize\ttfamily void SUB (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt }\end{DoxyParamCaption})}
+
+
+
+Subtracts the value of the first sabbat from the second sabbat and passes the result to the third. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we\textquotesingle{}ll pass the result to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a73241cd5d065fe5e3c8fcd17f29ba1ed}\label{projectfinal_8c_a73241cd5d065fe5e3c8fcd17f29ba1ed}} 
+\index{projectfinal.c@{projectfinal.c}!SUBI@{SUBI}}
+\index{SUBI@{SUBI}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{SUBI()}{SUBI()}}
+{\footnotesize\ttfamily void SUBI (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Subtarcts a constant number from a sabbat and passes the result to the second sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), integer constant number, and int index of the sabbat we\textquotesingle{}ll pass the result to (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_ae1d663091740d39219a78794f4c6120e}\label{projectfinal_8c_ae1d663091740d39219a78794f4c6120e}} 
+\index{projectfinal.c@{projectfinal.c}!SWP@{SWP}}
+\index{SWP@{SWP}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{SWP()}{SWP()}}
+{\footnotesize\ttfamily void SWP (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+It swaps the values of two sabbats. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt) and int index of the second sabbat. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a4c2aba9cfc40e6c523935c9b706fc17b}\label{projectfinal_8c_a4c2aba9cfc40e6c523935c9b706fc17b}} 
+\index{projectfinal.c@{projectfinal.c}!XOR@{XOR}}
+\index{XOR@{XOR}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{XOR()}{XOR()}}
+{\footnotesize\ttfamily void XOR (\begin{DoxyParamCaption}\item[{int}]{rd,  }\item[{int}]{rs,  }\item[{int}]{rt }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise xor on two sabbats and passes the result to the third. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rd), int index of the second sabbat (rs), and int index of the sabbat we\textquotesingle{}ll pass the result to (rt). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a45a828d6c33c2f9cc2983efb4a3067ac}\label{projectfinal_8c_a45a828d6c33c2f9cc2983efb4a3067ac}} 
+\index{projectfinal.c@{projectfinal.c}!XORI@{XORI}}
+\index{XORI@{XORI}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{XORI()}{XORI()}}
+{\footnotesize\ttfamily void XORI (\begin{DoxyParamCaption}\item[{int}]{rt,  }\item[{int}]{rs,  }\item[{int}]{Imm }\end{DoxyParamCaption})}
+
+
+
+Performs a bitwise xor on a sabbat and a constant integer and passes the result to the second sabbat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index of the first sabbat (rt), integer constant number, and int index of the sabbat we\textquotesingle{}ll pass the result to (rs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{projectfinal_8c_a767daef722be9eca9e10c6774015dd44}\label{projectfinal_8c_a767daef722be9eca9e10c6774015dd44}} 
+\index{projectfinal.c@{projectfinal.c}!zeroFlag@{zeroFlag}}
+\index{zeroFlag@{zeroFlag}!projectfinal.c@{projectfinal.c}}
+\doxysubsubsection{\texorpdfstring{zeroFlag()}{zeroFlag()}}
+{\footnotesize\ttfamily void zero\+Flag (\begin{DoxyParamCaption}\item[{int}]{result }\end{DoxyParamCaption})}
+
+
+
+It turns sabbat\mbox{[}1\mbox{]} to 1 if the result is equal to zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
