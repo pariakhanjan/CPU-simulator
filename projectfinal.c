@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <conio.h>
+#include <Windows.h>
 int S[32];
 int sabbat[8];
 int stack[100];
@@ -175,16 +177,13 @@ void SWP(int rt, int rs)
 }
 void DUMP_REGS()
 {
-    // cyan2();
+	system("color 07");
     printf("Sabbats: ");
-    // reset2();
     for (int i = 0; i < 32; i++)
     {
         printf("%d ", S[i]);
     }
-    // cyan2();
     printf("\nSabbat Vaziat: ");
-    // reset2();
     for (int i = 0; i < 8; i++)
     {
         printf("%d ", sabbat[i]);
@@ -205,26 +204,18 @@ void DUMP_REGS_F()
     }
     fclose(file);
 }
-void INPUT()
-{
-    int Imm;
-    scanf("%d", &Imm);
-    S[0] = Imm;
-}
-void OUTPUT()
-{
-    printf("%d\n", S[0]);
-}
 int Error(int rd, int rs, int rt, char instruction[12])
 {
     int check = 1;
     if (rd < 0 || rs < 0 || rt < 0)
     {
+    	system("color 06");
         printf("ERROR! You have a negative argument in %s.\n", instruction);
         check = 0;
     }
     if (rd > 31 || rs > 31 || rt < 0)
     {
+    	system("color 06");
         printf("ERROR! You have an argument larger than 31 in %s.\n", instruction);
         check = 0;
     }
@@ -232,23 +223,7 @@ int Error(int rd, int rs, int rt, char instruction[12])
         return 1;
     else
         return 0;
-}
-// void red()
-// {
-// 	printf("\033[0;31m");
-// }
-// void yellow()
-// {
-// 	printf("\033[0;32m");
-// }
-// void cyan2()
-// {
-// 	printf("\033[1;36m");
-// }
-// void reset()
-// {
-// 	printf("\033[0m");
-// }
+	}
 int main(int argc, char *argv[])
 {
     int j;
@@ -274,11 +249,9 @@ int main(int argc, char *argv[])
         {
             commands[i] = toupper(commands[i]);
         }
-        for (j = 0; commands[j] != ' ' ; j++)
+        for (j = 0; commands[j] != ' '; j++)
         {
             instructions[j] = commands[j];
-//            if(commands[j+1]=='\n')
-//            	commands[j+1]==' ';
         }                                                                  
         if (strcmp(instructions, "ADD") == 0)
         {
@@ -378,9 +351,8 @@ int main(int argc, char *argv[])
             jumpCount++;
             if (jumpCount > 10)
             {
-                // yellow();
-                printf("Error! Infinit loop has happened! We'll skip your jumps from now on!\n");
-                // normalColor();
+            	system("color 06");
+                printf("ERROR! Infinit loop has happened! We'll skip your jumps from now on!\n");
                 fscanf(inputs, "%[^\n]\n", commands);
                 jumpCount = 0;
             }
@@ -390,10 +362,12 @@ int main(int argc, char *argv[])
                 sscanf(commands, "JMP %d", &Imm);
                 if (Imm <= 0)
                 {
+                	system("color 06");
                     printf("ERROR! You can't jump to zero or a negative line!\n");
                 }
                 else if (Imm > lineCounter)
                 {
+                	system("color 06");
                     printf("ERROR! You only have %d lines. \n", lineCounter);
                 }
                 else
@@ -443,11 +417,12 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(instructions, "INPUT") == 0)
         {
-            INPUT();
+   		    scanf("%d", &Imm);
+    		S[0] = Imm;
         }
         else if (strcmp(instructions, "OUTPUT") == 0)
         {
-            OUTPUT();
+            printf("%d\n", S[0]);
         }
         else if (strcmp(instructions, "EXIT") == 0)
         {
@@ -455,9 +430,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            // red();
-            printf("ERROR! Wrong instruction! Please try again. Maybe you've made a typo\n");
-            // normalColor();
+        	system("color 06");
+            printf("ERROR! Wrong instruction! Please try again. Maybe you've made a typo.\n");
         }
     }
     fclose(inputs);
