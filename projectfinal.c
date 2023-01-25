@@ -1,5 +1,9 @@
 /*******************************************************************************
  * \file projectfinal.c
+ * \ file in.txt
+ * \ file a.txt
+ * \ file b.txt
+ * \ file regs.txt *
  * \brief This Code is a CPU simulator
  * \version: V1.09
  * \date: 24. january. 2023
@@ -14,7 +18,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include <Windows.h>
 
 int S[32];     /* sabbats */
@@ -399,25 +402,45 @@ void DUMP_REGS_F()
  *\param three integer indexes of sabbats, a string of the unstruction we want to perform.
  *\return returns 1 if an error has occured and returns 0 if the argument are valid.
  **/
-int Error(int rd, int rs, int rt, char instruction[12])
+int Error(int rd, int rs, int rt, char instruction[12], int line)
 {
     int check = 1;
     if (rd < 0 || rs < 0 || rt < 0)
     {
         system("color 04"); /* changes terminal's color to red. */
-        printf("ERROR! You have a negative argument in %s.\n", instruction);
+        printf("ERROR! You have a negative argument in %s. Check line %d.\n", instruction, line);
         check = 0;
     }
     if (rd > 31 || rs > 31 || rt < 0)
     {
         system("color 04"); /* changes terminal's color to red. */
-        printf("ERROR! You have an argument larger than 31 in %s.\n", instruction);
+        printf("ERROR! You have an argument larger than 31 in %s. Check line %d.\n", instruction, line);
         check = 0;
     }
     if (check != 1)
         return 1;
     else
         return 0;
+}
+
+/**
+ *\fn void upperCase (char string[120])
+ *\brief changes each lowercase letter to upper case.
+ *\param a string
+ *\void
+ **/
+void upperCase(char string[120])
+{
+    int i = 0;
+    while (string[i] != '\0')
+    {
+        /* if character is in lowercase, then subtract 32 */
+        if (string[i] >= 'a' && string[i] <= 'z')
+        {
+            string[i] = string[i] - 32;
+        }
+        i++;
+    }
 }
 
 /**
@@ -432,6 +455,7 @@ int main(int argc, char *argv[])
     int index;
     int jumpCount = 0;
     int lineCounter = 0;
+    int error = 0; /*to count what line an error has happened in */
     char commands[100];
     FILE *inputs;
     if (argc < 2)
@@ -452,12 +476,10 @@ int main(int argc, char *argv[])
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     {
         int rd, rs, rt, Imm;
+        error++;
         char instructions[12] = {'\0'};
-        for (int i = 0; i < sizeof(commands); i++)
-        {
-            /* makes sure all the letters in our input are uppercase. */
-            commands[i] = toupper(commands[i]);
-        }
+        /* makes sure all the letters in our input are uppercase. */
+        upperCase(commands);
         for (index = 0; commands[index] != ' ' && commands[index] != '\n' && commands[index] != '/' && commands[index] != '\0'; index++)
         {
             /*passes the first word of the line (which is suppossed to be the instruction) to the array "instructions" */
@@ -468,84 +490,84 @@ int main(int argc, char *argv[])
             if (strcmp(instructions, "ADD") == 0)
             {
                 sscanf(commands, "ADD S%d, S%d, S%d", &rd, &rs, &rt);
-                if (!Error(rd, rs, rt, instructions))
+                if (!Error(rd, rs, rt, instructions, error))
                     ADD(rd, rs, rt);
             }
 
             else if (strcmp(instructions, "SUB") == 0)
             {
                 sscanf(commands, "SUB S%d, S%d, S%d", &rd, &rs, &rt);
-                if (!Error(rd, rs, rt, instructions))
+                if (!Error(rd, rs, rt, instructions, error))
                     SUB(rd, rs, rt);
             }
 
             else if (strcmp(instructions, "AND") == 0)
             {
                 sscanf(commands, "AND S%d, S%d, S%d", &rd, &rs, &rt);
-                if (!Error(rd, rs, rt, instructions))
+                if (!Error(rd, rs, rt, instructions, error))
                     AND(rd, rs, rt);
             }
 
             else if (strcmp(instructions, "XOR") == 0)
             {
                 sscanf(commands, "XOR S%d, S%d, S%d", &rd, &rs, &rt);
-                if (!Error(rd, rs, rt, instructions))
+                if (!Error(rd, rs, rt, instructions, error))
                     XOR(rd, rs, rt);
             }
 
             else if (strcmp(instructions, "OR") == 0)
             {
                 sscanf(commands, "OR S%d, S%d, S%d", &rd, &rs, &rt);
-                if (!Error(rd, rs, rt, instructions))
+                if (!Error(rd, rs, rt, instructions, error))
                     OR(rd, rs, rt);
             }
 
             else if (strcmp(instructions, "DIV") == 0)
             {
                 sscanf(commands, "DIV S%d, S%d", &rt, &rs);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     DIV(rt, rs);
             }
 
             else if (strcmp(instructions, "MULL") == 0)
             {
                 sscanf(commands, "MULL S%d, S%d", &rt, &rs);
-                if (!Error(rt, rs, 0, instructions))
+                if (!Error(rt, rs, 0, instructions, error))
                     MULL(rt, rs);
             }
 
             else if (strcmp(instructions, "ADDI") == 0)
             {
                 sscanf(commands, "ADDI S%d, S%d, %d", &rd, &rs, &Imm);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     ADDI(rd, rs, Imm);
             }
 
             else if (strcmp(instructions, "SUBI") == 0)
             {
                 sscanf(commands, "SUBI S%d, S%d, %d", &rd, &rs, &Imm);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     SUBI(rd, rs, Imm);
             }
 
             else if (strcmp(instructions, "ANDI") == 0)
             {
                 sscanf(commands, "ANDI S%d, S%d, %d", &rd, &rs, &Imm);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     ANDI(rd, rs, Imm);
             }
 
             else if (strcmp(instructions, "XORI") == 0)
             {
                 sscanf(commands, "XORI S%d, S%d, %d", &rd, &rs, &Imm);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     XORI(rd, rs, Imm);
             }
 
             else if (strcmp(instructions, "ORI") == 0)
             {
                 sscanf(commands, "ORI S%d, S%d, %d", &rd, &rs, &Imm);
-                if (!Error(rd, rs, 0, instructions))
+                if (!Error(rd, rs, 0, instructions, error))
                     ORI(rd, rs, Imm);
             }
 
@@ -555,13 +577,13 @@ int main(int argc, char *argv[])
                 if (commands[8] == 'S' || commands[9] == 'S')
                 {
                     sscanf(commands, "MOV S%d, S%d", &rt, &rs);
-                    if (!Error(rt, rs, 0, instructions))
+                    if (!Error(rt, rs, 0, instructions, error))
                         MOV(rt, S[rs]);
                 }
                 else
                 {
                     sscanf(commands, "MOV S%d, %d", &rt, &Imm);
-                    if (!Error(rt, 0, 0, instructions))
+                    if (!Error(rt, 0, 0, instructions, error))
                         MOV(rt, Imm);
                 }
             }
@@ -569,7 +591,7 @@ int main(int argc, char *argv[])
             else if (strcmp(instructions, "SWP") == 0)
             {
                 sscanf(commands, "SWP S%d, S%d", &rt, &rs);
-                if (!Error(rt, rs, 0, instructions))
+                if (!Error(rt, rs, 0, instructions, error))
                     SWP(rt, rs);
             }
 
@@ -580,9 +602,7 @@ int main(int argc, char *argv[])
                 {
                     /* if we have backward jumps in our input, an infinit loop might happen. We'll count our jumps and if the number gets higher than 10, we'll ignore jump instructions. */
                     system("color 04");
-                    printf("ERROR! Infinit loop has happened! We'll skip your jumps from now on!\n");
-                    //fscanf(inputs, "%[^\n]\n", commands);
-                    /* scans the current line again so that the conditions below will be false and we'll skip a line. */
+                    printf("ERROR! Infinit loop has happened! We'll skip your jumps from now on! Check line %d.\n", error);
                 }
                 else
                 {
@@ -591,15 +611,16 @@ int main(int argc, char *argv[])
                     if (Imm <= 0)
                     {
                         system("color 04");
-                        printf("ERROR! You can't jump to zero or a negative line!\n");
+                        printf("ERROR! You can't jump to zero or a negative line! Check line %d.\n", error);
                     }
                     else if (Imm > lineCounter)
                     {
                         system("color 04");
-                        printf("ERROR! You only have %d lines. You can't jump to a line you don't have! \n", lineCounter);
+                        printf("ERROR! You only have %d lines. You can't jump to a line you don't have! Check line %d.\n", lineCounter, error);
                     }
                     else
                     {
+                        error = Imm - 1;
                         rewind(inputs);
                         /* return pointer to the beggining of our file */
                         while (countLines != Imm)
@@ -616,12 +637,13 @@ int main(int argc, char *argv[])
             else if (strcmp(instructions, "SKIE") == 0)
             {
                 sscanf(commands, "SKIE S%d, S%d", &rt, &rs);
-                if (!Error(rt, rs, 0, instructions))
+                if (!Error(rt, rs, 0, instructions, error))
                 {
                     if (S[rs] == S[rt])
                     {
                         fscanf(inputs, "%[^\n]\n", commands);
                         /* scans the current line again so that the conditions below will be false and we'll skip a line. */
+                        error++;
                     }
                 }
             }
@@ -629,24 +651,28 @@ int main(int argc, char *argv[])
             else if (strcmp(instructions, "PUSH") == 0)
             {
                 sscanf(commands, "PUSH S%d", &rs);
-                if (!Error(rs, 0, 0, instructions))
+                error++;
+                if (!Error(rs, 0, 0, instructions, error))
                     PUSH(rs);
             }
 
             else if (strcmp(instructions, "POP") == 0)
             {
                 sscanf(commands, "POP S%d", &rs);
-                if (!Error(rs, 0, 0, instructions))
+                error++;
+                if (!Error(rs, 0, 0, instructions, error))
                     POP(rs);
             }
 
             else if (strcmp(instructions, "DUMP_REGS") == 0)
             {
+                error++;
                 DUMP_REGS();
             }
 
             else if (strcmp(instructions, "DUMP_REGS_F") == 0)
             {
+                error++;
                 DUMP_REGS_F();
             }
 
@@ -655,12 +681,14 @@ int main(int argc, char *argv[])
                 printf("Please enter a number: \n");
                 /* takes a constant integer from user an passes it to S[0] */
                 scanf("%d", &S[0]);
+                error++;
             }
 
             else if (strcmp(instructions, "OUTPUT") == 0)
             {
                 /* prints the first sabbat */
                 printf("first sabbat: %d\n", S[0]);
+                error++;
             }
 
             else if (strcmp(instructions, "EXIT") == 0)
@@ -672,7 +700,8 @@ int main(int argc, char *argv[])
             else
             {
                 system("color 04");
-                printf("ERROR! Wrong instruction! Please try again. Maybe you've made a typo.\n");
+                error++;
+                printf("ERROR! Wrong instruction in line %d! Please try again. Maybe you've made a typo.\n", error);
             }
         }
     }
