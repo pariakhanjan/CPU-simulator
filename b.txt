@@ -1,0 +1,15 @@
+MOV S4, 5 		// S[4]=5
+INPUT 			// takes S[0] from user
+ADD S8, S0, S4		// S[8] = S[0] + S[4] = INPUT + 5
+DIV S8, S4		// S[8] = S[8]/5 , S[4]=S[8]%5
+ORI S15, S4, 8		// S[15] = S[4] or 8
+PUSH S15 		// puts S[15] in the stack
+XOR S18, S4, S8		// S[18] = S[4] xor S[8]
+SHOW S12		// such instruction doesn't exist, so this line will be ignored.
+ANDI S22, S4, 6		// S[22] = S[4] + 6
+POP S15			// takes S[15] away from the stack
+SWP S0, S15 		// swaps S[0] and S[15]
+OUTPUT  		// prints S[0]
+DUMP_REGS 		// prints all sabbats
+DUMP_REGS_F 		// prints all sabbats in regs.txt
+EXIT 			// stops our code

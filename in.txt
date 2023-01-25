@@ -1,19 +1,18 @@
-MOV S0, 4
-MOV S1, 5
-ADD S2, S141, S0
-AND S4, S1, S0
-JMP 50
-JMP 5
-XOR S5, S1, S0
-SKIE S3, S6
-JMP 2
-OR S6, S1, S0
-INPUT 
-OUTPUT //hi
-SWP S7, S6
-DUMP_REGS 
-ANDI S7, S1, 3
-EXIT 
-DUMP_REGS_F 
+MOV S0, 4		// S[0] = 4
+MOV S1, 5		// S[1] = 5
+ADD S2, S1, S0		// S[2] = 4 + 5 = 9
+AND S4, S1, S0		// S[4] = 4 and 5 = 4
+JMP 50			// We don't have 50 lines, so we'll get at error and skip this.
+XOR S5, S4, S2		// S[5] = 4 xor 9 = 13
+JMP 2			// jumps to line 2. Backward jumps result in infinite loops and we'll skip them after a while.
+OR S6, S5, S2		// S[6] = 9 or 13 = 13
+INPUT 			// takes S[0] from user.
+OUTPUT 			// prints S[0]
+MOV S20, 4		// S[20] = 4
+ANDI S7, S1, 3		// S[7] = 5 and 3 = 1
+DUMP_REGS 		// prints all sabbats
+SWP S7, S6		// swaps the values of S[7] and S[6]
+DUMP_REGS_F 		// prints all sabbats in regs.txt
+EXIT 			// stops our code 
 
 

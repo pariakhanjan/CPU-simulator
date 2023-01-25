@@ -1,0 +1,15 @@
+INPUT 			// takes S[0] from user
+MOV S6, S0		// puts input (S[0]) in S[6]
+MOV S8, 10		// S[8] = 10
+MULL S8, S6		// S[8]= 4 most significant bits of S[6]*10, S[6]= 4 least significant bits of S[6]*10
+SUBI S4, S8, -4 	// S[4] = S[8] - (-4)
+SKIE S6, S4		// If S[6] = S[4], we'll skip the next line
+XORI S30, S6, 8		// S[30] = S[6] xor 8
+SUB S22, S30, S0	// S[22] = S[30] - S[0]
+MOV S33, 4		// since S[33] doesn't exist, we'll get an error and skip this line
+ADDI S16, S0, 7		// S[16] = S[0] + 7
+JMP -2			// we don't have negative lines so we'll skip this instruction.
+SWP S22, S4		// swaps the values of S[22] and S[4]
+DUMP_REGS  		// prints all sabbats
+DUMP_REGS_F 		// prints all sabbats in regs.txt
+EXIT 			// stops our code
