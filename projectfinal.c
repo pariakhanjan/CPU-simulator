@@ -1,28 +1,29 @@
 /*******************************************************************************
  * \file projectfinal.c
- * \ file in.txt
- * \ file a.txt
- * \ file b.txt
- * \ file regs.txt *
+ * \file in.txt
+ * \file a.txt
+ * \file b.txt
+ * \file regs.txt 
  * \brief This Code is a CPU simulator
  * \version: V1.09
  * \date: 24. january. 2023
  * \author: Paria Khanjan
  * \mainpage
  ******************************************************************************/
-/** @file */
+/** @file **/
 /***********
  * Include Files
- * \brief I've added "ctype.h" library for the function "toupper". The "Windows.h" library is added for changing system color in errors.
  ************/
-
+ 
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
 
+
 int S[32];     /* sabbats */
 int sabbat[8]; /* sabbat vaziat */
 int stack[100];
+
 
 /**
  *\fn void parityFlag(int result)
@@ -141,7 +142,7 @@ void POP(int rs)
     S[rs] = stack[0];
     for (int i = 0; i < 100; i++)
     {
-        stack[0] = stack[i + 1];
+        stack[i] = stack[i + 1];
     }
 }
 
@@ -382,18 +383,13 @@ void DUMP_REGS_F()
 {
     FILE *file;
     file = fopen("regs.txt", "w");
-    if (file == NULL)
-        printf("ERROR!!!!!");
-    else
-    {
-        fprintf(file, "Sabbats: ");
-        for (int i = 0; i < 32; i++)
-            fprintf(file, "%d ", S[i]);
-        fprintf(file, "\nSabbat Vaziat: ");
-        for (int i = 0; i < 8; i++)
+	fprintf(file, "Sabbats: ");
+	for (int i = 0; i < 32; i++)
+        fprintf(file, "%d ", S[i]);
+    fprintf(file, "\nSabbat Vaziat: ");
+    for (int i = 0; i < 8; i++)
             fprintf(file, "%d ", sabbat[i]);
-        fprintf(file, "\n");
-    }
+    fprintf(file, "\n");
     fclose(file);
 }
 /**
@@ -423,32 +419,13 @@ int Error(int rd, int rs, int rt, char instruction[12], int line)
         return 0;
 }
 
-/**
- *\fn void upperCase (char string[120])
- *\brief changes each lowercase letter to upper case.
- *\param a string
- *\void
- **/
-void upperCase(char string[120])
-{
-    int i = 0;
-    while (string[i] != '\0')
-    {
-        /* if character is in lowercase, then subtract 32 */
-        if (string[i] >= 'a' && string[i] <= 'z')
-        {
-            string[i] = string[i] - 32;
-        }
-        i++;
-    }
-}
 
 /**
  *\fn int main(int argc, char *argv[])
  *\param int argc, char *argv[]
  *\return int
-
  **/
+
 
 int main(int argc, char *argv[])
 {
@@ -459,10 +436,14 @@ int main(int argc, char *argv[])
     char commands[100];
     FILE *inputs;
     if (argc < 2)
+    {
         /* if the user has input an invalid file name, it automatically opens "in.txt" */
         inputs = fopen("in.txt", "r");
+	}
     else
+    {
         inputs = fopen(argv[1], "r");
+	}	
     /* it opens user's input */
     while (fscanf(inputs, "%[^\n]\n", commands) != EOF)
     /* scans each line from the file and passes it to the array "commands" */
@@ -477,15 +458,23 @@ int main(int argc, char *argv[])
     {
         int rd, rs, rt, Imm;
         error++;
-        char instructions[12] = {'\0'};
         /* makes sure all the letters in our input are uppercase. */
-        upperCase(commands);
-        for (index = 0; commands[index] != ' ' && commands[index] != '\n' && commands[index] != '/' && commands[index] != '\0'; index++)
+        for (int i = 0; i < sizeof(commands); i++)
+        {
+            /* makes sure all the letters in our input are uppercase. */
+            /* if character is in lowercase, then subtract 32 */
+            if (commands[i] >= 'a' && commands[i] <= 'z')
+            {
+                commands[i] = commands[i] - 32;
+            }
+        }
+        char instructions[12] = {'\0'};
+        for (index = 0; commands[index] != ' ' && commands[index] != '\n' && commands[index] != '/' ; index++)
         {
             /*passes the first word of the line (which is suppossed to be the instruction) to the array "instructions" */
             instructions[index] = commands[index];
         }
-        if (instructions[0] != 0)
+        if (instructions[0] != '\0')
         {
             if (strcmp(instructions, "ADD") == 0)
             {
@@ -620,9 +609,9 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        error = Imm - 1;
                         rewind(inputs);
                         /* return pointer to the beggining of our file */
+                        error = Imm - 1;
                         while (countLines != Imm)
                         {
                             if (fgetc(inputs) == '\n')
@@ -651,7 +640,6 @@ int main(int argc, char *argv[])
             else if (strcmp(instructions, "PUSH") == 0)
             {
                 sscanf(commands, "PUSH S%d", &rs);
-                error++;
                 if (!Error(rs, 0, 0, instructions, error))
                     PUSH(rs);
             }
@@ -659,20 +647,17 @@ int main(int argc, char *argv[])
             else if (strcmp(instructions, "POP") == 0)
             {
                 sscanf(commands, "POP S%d", &rs);
-                error++;
                 if (!Error(rs, 0, 0, instructions, error))
                     POP(rs);
             }
 
             else if (strcmp(instructions, "DUMP_REGS") == 0)
             {
-                error++;
                 DUMP_REGS();
             }
 
             else if (strcmp(instructions, "DUMP_REGS_F") == 0)
             {
-                error++;
                 DUMP_REGS_F();
             }
 
@@ -681,14 +666,12 @@ int main(int argc, char *argv[])
                 printf("Please enter a number: \n");
                 /* takes a constant integer from user an passes it to S[0] */
                 scanf("%d", &S[0]);
-                error++;
             }
 
             else if (strcmp(instructions, "OUTPUT") == 0)
             {
                 /* prints the first sabbat */
                 printf("first sabbat: %d\n", S[0]);
-                error++;
             }
 
             else if (strcmp(instructions, "EXIT") == 0)
@@ -700,7 +683,6 @@ int main(int argc, char *argv[])
             else
             {
                 system("color 04");
-                error++;
                 printf("ERROR! Wrong instruction in line %d! Please try again. Maybe you've made a typo.\n", error);
             }
         }
